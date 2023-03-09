@@ -50,3 +50,21 @@ def get_zodiac_sign_by_number(request, sign_zodiac: int):
         redirect_url = reverse('zodiac_sign', args=(sign,))
         return HttpResponseRedirect(redirect_url)
     return HttpResponseNotFound(f'Знака зодиака под номером {sign_zodiac} не существует!')
+
+def get_type_elements(request):
+    temp = ""
+    for element in zodiac_element:
+        redirect_url = reverse('signs_of_the_zodiac_element', args=(element,))
+        temp += f"<li><a href='{redirect_url}'>{element.title()}</li>"
+    response = f"<ul>{temp}</ul>"
+    return HttpResponse(response)
+
+def get_signs_of_the_zodiac_element(request, element_type):
+    if element_type in zodiac_element:
+        temp = ""
+        for sign in zodiac_element[element_type]:
+            redirect_url = reverse('zodiac_sign', args=(sign,))
+            temp += f"<li><a href='{redirect_url}'>{sign.title()}</li>"
+        response = f"<ul>{temp}</ul>"
+        return HttpResponse(response)
+    return HttpResponseNotFound(f"Такого типа элемента не существет - {element_type}")
