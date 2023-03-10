@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+    {{ sign|capfirst }}
+{% endblock %}
+
+
+{% block content %}
+    {% if description is None %}
+        <h2>Неправильный знак зодиака - {{ sign }}</h2>
+    {% else %}
+        <h2>{{ description }}</h2>
+    {% endif %}
+{% endblock %}
