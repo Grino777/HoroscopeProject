@@ -28,20 +28,20 @@ zodiac_element = {
 
 
 def index(request):
-    temp = ""
-    for sign in list(zodiac_dict):
-        redirect_url = reverse('zodiac_sign', args=(sign,))
-        temp += f"<li><a href='{redirect_url}'>{sign.title()}</li>"
-    response = f"<ul>{temp}</ul>"
-    return HttpResponse(response)
+    zodiacs_list = list(zodiac_dict)
+    # temp += f"<li><a href='{redirect_url}'>{sign.title()}</li>"
+    context = {
+        "zodiacs_list": zodiacs_list,
+    }
+    return render(request, 'horoscope/index.html', context=context)
 
 
 def get_zodiac_sign(request, sign_zodiac: str):
-    if sign_zodiac.lower() in list(zodiac_dict):
-        redirect_url = reverse('zodiac_sign', args=(sign_zodiac,))
-        description = zodiac_dict[sign_zodiac]
-        return HttpResponse(f"<h2>{description}</h2>")
-    return HttpResponseNotFound(f"<h2>{sign_zodiac} - не найден</h2>")
+    context = {
+        "sign": sign_zodiac.lower(),
+        "description": zodiac_dict.get(sign_zodiac, None),
+    }
+    return render(request, 'horoscope/info_zodiac.html', context=context)
 
 
 def get_zodiac_sign_by_number(request, sign_zodiac: int):

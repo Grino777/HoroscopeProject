@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Меню
+{% endblock %}
+
+
+{% block content %}
+    <ul>
+        {% for sign in zodiacs_list %}
+        <li><a href="{% url 'zodiac_sign' sign_zodiac=sign %}">{{ sign|capfirst }}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}
