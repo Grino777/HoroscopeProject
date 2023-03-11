@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block content %}
+    {% include 'includes/navbar.html' %}
     {% if zodiac_signs is None %}
         <h2>Такого типа элемента {{ element_type|upper }} не существует!</h2>
     {% else %}

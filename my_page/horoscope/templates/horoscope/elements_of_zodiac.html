@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block content %}
+    {% include 'includes/navbar.html' %}
     <ul>
         {% for element in zodiac_elements %}
             <li><a href="{% url 'signs_of_the_zodiac_element' element %}">{{ element|capfirst }}</li>

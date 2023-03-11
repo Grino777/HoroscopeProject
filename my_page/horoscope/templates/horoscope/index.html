@@ -6,6 +6,7 @@
 
 
 {% block content %}
+    {% include 'includes/navbar.html' %}
     <ul>
         {% for sign in zodiacs_list %}
         <li><a href="{% url 'zodiac_sign' sign_zodiac=sign %}">{{ sign|capfirst }}</a></li>
