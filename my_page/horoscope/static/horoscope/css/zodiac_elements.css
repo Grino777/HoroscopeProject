@@ -24,10 +24,9 @@ ul a:hover, ul a:active {
     color: #eca8b5;
 }
 
-h1 {
-    color: #e8dede;
+h2 {
+    color: #d2d2e5;
     text-align: center;
-    font-family: "Andale Mono", AndaleMono, monospace;
-    font-size:48px;
-    text-decoration: underline;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    font-size: 30px;
 }

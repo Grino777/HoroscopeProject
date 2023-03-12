@@ -1,13 +1,18 @@
 {% extends 'base.html' %}
 
 {% load static %}
+{% load my_filter %}
 
 {% block css_add %}
     <link rel="stylesheet" href="{% static 'horoscope/css/info.css' %}">
 {% endblock %}
 
 {% block title %}
-    {{ sign|capfirst }}
+    {% if description is None %}
+        {{ sign }}
+    {% else %}
+        {{ description|split }}
+    {% endif %}
 {% endblock %}
 
 
@@ -16,6 +21,7 @@
     {% if description is None %}
         <h2>Неправильный знак зодиака - {{ sign }}</h2>
     {% else %}
+        <h1>{{ description|split }}</h1>
         <h2>{{ description }}</h2>
     {% endif %}
 {% endblock %}

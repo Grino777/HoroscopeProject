@@ -28,9 +28,8 @@ zodiac_element = {
 
 
 def index(request):
-    # temp += f"<li><a href='{redirect_url}'>{sign.title()}</li>"
     context = {
-        "zodiacs_list": list(zodiac_dict),
+        "zodiacs": zodiac_dict,
     }
     return render(request, 'horoscope/index.html', context=context)
 
@@ -39,7 +38,7 @@ def get_zodiac_sign(request, sign_zodiac: str):
     context = {
         "sign": sign_zodiac.lower(),
         "description": zodiac_dict.get(sign_zodiac, None),
-        "zodiacs_list": list(zodiac_dict),
+        "zodiacs": zodiac_dict,
     }
     return render(request, 'horoscope/info_zodiac.html', context=context)
 
@@ -54,14 +53,19 @@ def get_zodiac_sign_by_number(request, sign_zodiac: int):
 def get_type_elements(request):
     context = {
         'zodiac_elements': list(zodiac_element),
-        "zodiacs_list": list(zodiac_dict),
+        "zodiacs": zodiac_dict,
     }
     return render(request, 'horoscope/elements_of_zodiac.html', context=context)
 
 def get_signs_of_the_zodiac_element(request, element_type):
+    zodiacs = zodiac_element.get(element_type, None)
+    if zodiacs is None:
+        zodiac_signs = None
+    else:
+        zodiac_signs = {sign: zodiac_dict.get(sign, None) for sign in zodiacs}
     context = {
-        'zodiac_signs': zodiac_element.get(element_type, None),
+        'zodiac_signs': zodiac_signs,
         'element_type': element_type,
-        "zodiacs_list": list(zodiac_dict),
+        "zodiacs": zodiac_dict,
     }
     return render(request, 'horoscope/signs_of_element.html', context=context)
