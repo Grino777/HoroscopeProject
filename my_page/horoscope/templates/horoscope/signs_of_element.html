@@ -1,5 +1,11 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
+{% block css_add %}
+    <link rel="stylesheet" href="{% static 'horoscope/css/zodiac_elements.css' %}">
+{% endblock %}
+
 {% block title %}
     {{ element_type|upper }}
 {% endblock %}
@@ -9,11 +15,13 @@
     {% if zodiac_signs is None %}
         <h2>Такого типа элемента {{ element_type|upper }} не существует!</h2>
     {% else %}
-        <ul>
-        {% for sign in zodiac_signs %}
-            <li><a href="{% url 'zodiac_sign' sign %}">{{ sign|capfirst }}</a></li>
-        {% endfor %}
-        </ul>
+        <div>
+            <ul>
+                {% for sign in zodiac_signs %}
+                <li><a href="{% url 'zodiac_sign' sign %}">{{ sign|capfirst }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
     {% endif %}
 
 {% endblock %}

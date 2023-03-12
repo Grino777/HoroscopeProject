@@ -1,4 +1,7 @@
 <nav>
-  <a href="{% url 'horoscope_index' %}">Главная</a> |
-  <a href="{% url 'elements_of_zodiac' %}">Элементы</a> |
+  <a href="{% url 'horoscope_index' %}">Главная</a>
+  <a href="{% url 'elements_of_zodiac' %}">Элементы</a>
+  {% for sign in zodiacs_list %}
+      <a href="{% url 'zodiac_sign' sign %}">{{ sign|capfirst }}</a>
+  {% endfor %}
 </nav>
